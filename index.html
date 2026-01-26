@@ -66,11 +66,12 @@
         .article-item:hover .article-arrow { opacity: 1; transform: translateX(4px); }
 
         /* Image Modal */
-        .modal { display: none; position: fixed; z-index: 10000; inset: 0; background-color: rgba(0, 0, 0, 0.95); align-items: center; justify-content: center; padding: 2rem; }
-        .modal-content { max-width: 90%; max-height: 90vh; object-fit: contain; border-radius: 8px; }
+        .modal { display: none; position: fixed; z-index: 10000; inset: 0; background-color: rgba(0, 0, 0, 0.95); align-items: center; justify-content: center; padding: 2rem; flex-direction: column; }
+        .modal-content { max-width: 90%; max-height: 80vh; object-fit: contain; border-radius: 8px; }
         .modal-close { position: absolute; top: 2rem; right: 3rem; color: #fff; font-size: 3rem; font-weight: 700; cursor: pointer; transition: all 0.3s; }
         .modal-close:hover { color: #ff3b3b; }
-        #modalCaption { text-align: center; color: #ccc; padding: 1rem; font-size: 1.1rem; max-width: 80%; margin: 1rem auto 0; }
+        #modalCaption { text-align: center; color: #fff; padding: 1.5rem 2rem; font-size: 1.2rem; max-width: 90%; margin: 1rem auto 0; font-weight: 600; }
+        .modal-meta { text-align: center; color: #888; font-size: 0.9rem; margin-top: 0.5rem; }
 
         .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 1.5rem; }
         .video-card { background-color: rgba(255, 255, 255, 0.02); border-radius: 12px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.1); }
@@ -343,6 +344,7 @@
         <span class="modal-close">&times;</span>
         <img class="modal-content" id="modalImage">
         <div id="modalCaption"></div>
+        <div class="modal-meta" id="modalMeta"></div>
     </div>
 
     <script>
@@ -353,7 +355,7 @@
         const articles = {
             pelMel: {
                 2025: [
-                    { title: "PCP: Is Sports Betting Good for the Game?", date: "Nov 2025", category: "Opinion", url: null, imageUrl: "PM_SportsBetOpin_112025.jpg", isPrint: true },
+                    { title: "Point Counter Point: Is Sports Betting Good for the Game?", date: "Nov 2025", category: "Opinion", url: null, imageUrl: "PM_SportsBetOpin_112025.jpg", isPrint: true },
                     { title: "Fall Sports Update: Girls Tennis", date: "Oct 2025", category: "Sports", url: null, imageUrl: "PM_SU_Tennis_102025.jpg", isPrint: true },
                     { title: "PMHS Olympics History", date: "Mar 2025", category: "Features", url: null, imageUrl: "PM_Feat_OlympicsHist_102025.jpg", isPrint: true },
                     { title: "PMHS Merges with Eastchester to Form Wrestling Team", date: "Feb 13, 2025", category: "Sports", url: "https://thepelmelpmhs.com/10011/news/pmhs-merges-with-eastchester-to-form-wrestling-team/", imageUrl: null, isPrint: false }
@@ -404,7 +406,8 @@
                 data[year].forEach(a => {
                     if (a.isPrint) {
                         // Print article with image preview
-                        html += `<div class="article-item print-article ${color}" onclick="showImage('${a.imageUrl}', '${a.title.replace(/'/g, "\\'")}')"><div class="article-info"><div class="article-meta"><span class="article-date">${a.date}</span><span class="article-category badge-${color}">${a.category}</span><span class="print-badge">📰 Print</span></div><div class="article-title">${a.title}</div></div><div class="article-arrow color-${color}">👁️</div></div>`;
+                        const metadata = JSON.stringify({date: a.date, category: a.category}).replace(/"/g, '&quot;');
+                        html += `<div class="article-item print-article ${color}" onclick='showImage("${a.imageUrl}", "${a.title.replace(/'/g, "\\'")}",  ${metadata.replace(/'/g, "\\'")})'><div class="article-info"><div class="article-meta"><span class="article-date">${a.date}</span><span class="article-category badge-${color}">${a.category}</span><span class="print-badge">📰 Print</span></div><div class="article-title">${a.title}</div></div><div class="article-arrow color-${color}">👁️</div></div>`;
                     } else {
                         // Digital article with link
                         html += `<div class="article-item ${color}" onclick="window.open('${a.url}','_blank')"><div class="article-info"><div class="article-meta"><span class="article-date">${a.date}</span><span class="article-category badge-${color}">${a.category}</span></div><div class="article-title">${a.title}</div></div><div class="article-arrow color-${color}">→</div></div>`;
@@ -415,12 +418,14 @@
             container.innerHTML = html;
         }
 
-        function showImage(imageUrl, title) {
+        function showImage(imageUrl, title, metadata) {
             const modal = document.getElementById('imageModal');
             const img = document.getElementById('modalImage');
             const caption = document.getElementById('modalCaption');
+            const meta = document.getElementById('modalMeta');
             img.src = imageUrl;
             caption.textContent = title;
+            meta.textContent = `${metadata.date} • ${metadata.category}`;
             modal.style.display = 'flex';
         }
 
