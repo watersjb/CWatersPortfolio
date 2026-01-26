@@ -147,7 +147,7 @@
         <h2>Conor Waters</h2>
         <p>Student Journalist & Sports Broadcaster</p>
         <nav style="display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 2rem;">
-            <button onclick="scrollTo('home')" style="background: none; border: none; color: #888; padding: 1rem; text-align: left; cursor: pointer; font-size: 1.1rem; font-weight: 600; border-radius: 8px;">Home</button>
+            <button onclick="jumpTo('home')" style="background: none; border: none; color: #888; padding: 1rem; text-align: left; cursor: pointer; font-size: 1.1rem; font-weight: 600; border-radius: 8px;">Home</button>
             <button onclick="scrollToSection('about')" style="background: none; border: none; color: #888; padding: 1rem; text-align: left; cursor: pointer; font-size: 1.1rem; font-weight: 600; border-radius: 8px;">About</button>
             <button onclick="scrollToSection('pel-mel')" style="background: none; border: none; color: #888; padding: 1rem; text-align: left; cursor: pointer; font-size: 1.1rem; font-weight: 600; border-radius: 8px;">The Pel Mel</button>
             <button onclick="scrollToSection('examiner')" style="background: none; border: none; color: #888; padding: 1rem; text-align: left; cursor: pointer; font-size: 1.1rem; font-weight: 600; border-radius: 8px;">Pelham Examiner</button>
@@ -172,15 +172,15 @@
             <h1>Conor Waters</h1>
             <p class="hero-subtitle">Student Journalist & Sports Broadcaster</p>
             <div class="badges">
-                <div class="badge bg-red" onclick="scrollTo('pel-mel')" style="cursor: pointer;">
+                <div class="badge bg-red" onclick="jumpTo('pel-mel')" style="cursor: pointer;">
                     <div class="badge-title color-red">The Pel Mel</div>
                     <div class="badge-role">Associate Editor-in-Chief</div>
                 </div>
-                <div class="badge bg-blue" onclick="scrollTo('examiner')" style="cursor: pointer;">
+                <div class="badge bg-blue" onclick="jumpTo('examiner')" style="cursor: pointer;">
                     <div class="badge-title color-blue">Pelham Examiner</div>
                     <div class="badge-role">Assistant Managing Editor</div>
                 </div>
-                <div class="badge bg-green" onclick="scrollTo('broadcasting')" style="cursor: pointer;">
+                <div class="badge bg-green" onclick="jumpTo('broadcasting')" style="cursor: pointer;">
                     <div class="badge-title color-green">Bruce Beck Camp</div>
                     <div class="badge-role">Veteran Participant</div>
                 </div>
@@ -227,7 +227,7 @@
             </div>
             <div id="pelMelArticles"></div>
             <div style="text-align: center; margin-top: 3rem;">
-                <button onclick="scrollTo('home')" class="back-to-top">↑ Back to Top</button>
+                <button onclick="jumpTo('home')" class="back-to-top">↑ Back to Top</button>
             </div>
         </div>
     </section>
@@ -241,7 +241,7 @@
             </div>
             <div id="examinerArticles"></div>
             <div style="text-align: center; margin-top: 3rem;">
-                <button onclick="scrollTo('home')" class="back-to-top">↑ Back to Top</button>
+                <button onclick="jumpTo('home')" class="back-to-top">↑ Back to Top</button>
             </div>
         </div>
     </section>
@@ -336,7 +336,7 @@
                 <p style="font-size: 0.95rem; color: #ccc; line-height: 1.6;"><strong class="color-green">2025 & 2026 (upcoming) Veteran Camp Participant</strong> • Advanced training program in sports broadcasting, play-by-play commentary, and on-camera reporting with NBC 4's Emmy-winning anchor Bruce Beck and top NYC sportscasters.</p>
             </div>
             <div style="text-align: center; margin-top: 3rem;">
-                <button onclick="scrollTo('home')" class="back-to-top">↑ Back to Top</button>
+                <button onclick="jumpTo('home')" class="back-to-top">↑ Back to Top</button>
             </div>
         </div>
     </section>
@@ -457,7 +457,7 @@
             toggleMenu();
         }
 
-        function scrollTo(id) {
+        function jumpTo(id) {
             document.getElementById(id).scrollIntoView({behavior:'smooth'});
         }
 
