@@ -60,9 +60,17 @@
         .article-meta { display: flex; gap: 1rem; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap; }
         .article-date { font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 0.05em; }
         .article-category { padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; }
+        .print-badge { padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.65rem; font-weight: 700; background-color: rgba(255, 255, 255, 0.1); color: #888; }
         .article-title { font-size: 1.05rem; font-weight: 600; line-height: 1.4; color: #fff; }
         .article-arrow { font-size: 1.2rem; opacity: 0.6; transition: all 0.25s; }
         .article-item:hover .article-arrow { opacity: 1; transform: translateX(4px); }
+
+        /* Image Modal */
+        .modal { display: none; position: fixed; z-index: 10000; inset: 0; background-color: rgba(0, 0, 0, 0.95); align-items: center; justify-content: center; padding: 2rem; }
+        .modal-content { max-width: 90%; max-height: 90vh; object-fit: contain; border-radius: 8px; }
+        .modal-close { position: absolute; top: 2rem; right: 3rem; color: #fff; font-size: 3rem; font-weight: 700; cursor: pointer; transition: all 0.3s; }
+        .modal-close:hover { color: #ff3b3b; }
+        #modalCaption { text-align: center; color: #ccc; padding: 1rem; font-size: 1.1rem; max-width: 80%; margin: 1rem auto 0; }
 
         .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 1.5rem; }
         .video-card { background-color: rgba(255, 255, 255, 0.02); border-radius: 12px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.1); }
@@ -330,6 +338,13 @@
 
     <footer><p>© 2026 Conor Waters. All rights reserved.</p></footer>
 
+    <!-- Image Modal for Print Articles -->
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="modal-close">&times;</span>
+        <img class="modal-content" id="modalImage">
+        <div id="modalCaption"></div>
+    </div>
+
     <script>
         function showContact() {
             window.location.href = 'mailto:' + 'waterscon123' + '@' + 'gmail.com';
@@ -338,29 +353,40 @@
         const articles = {
             pelMel: {
                 2025: [
-                    { title: "PMHS Merges with Eastchester to Form Wrestling Team", date: "Feb 13, 2025", category: "Sports", url: "https://thepelmelpmhs.com/10011/news/pmhs-merges-with-eastchester-to-form-wrestling-team/" }
+                    { title: "PCP: Is Sports Betting Good for the Game?", date: "Nov 2025", category: "Opinion", url: null, imageUrl: "PM_SportsBetOpin_112025.jpg", isPrint: true },
+                    { title: "Fall Sports Update: Girls Tennis", date: "Oct 2025", category: "Sports", url: null, imageUrl: "PM_SU_Tennis_102025.jpg", isPrint: true },
+                    { title: "PMHS Olympics History", date: "Mar 2025", category: "Features", url: null, imageUrl: "PM_Feat_OlympicsHist_102025.jpg", isPrint: true },
+                    { title: "PMHS Merges with Eastchester to Form Wrestling Team", date: "Feb 13, 2025", category: "Sports", url: "https://thepelmelpmhs.com/10011/news/pmhs-merges-with-eastchester-to-form-wrestling-team/", imageUrl: null, isPrint: false }
+                ],
+                2024: [
+                    { title: "Track and Field", date: "Dec 2024", category: "Sports", url: null, imageUrl: "PM_SU_TF_122024.jpg", isPrint: true },
+                    { title: "Thanksgiving is Underappreciated Across America", date: "Nov 2024", category: "Features", url: null, imageUrl: "PM_Opin_Thanks_112024.jpg", isPrint: true },
+                    { title: "Fall Sports Updates: Boys Soccer", date: "Oct 2024", category: "Sports", url: null, imageUrl: "PM_SU_Soccer_102024.jpg", isPrint: true },
+                    { title: "Spring Sports Preview: Spring Track", date: "Apr 2024", category: "Sports", url: null, imageUrl: "PM_SportsPrev_Track_042024.jpg", isPrint: true },
+                    { title: "Spring Sports Preview: Baseball", date: "Apr 2024", category: "Sports", url: null, imageUrl: "PM_SportsPrev_Spring_Baseball_042024.jpg", isPrint: true },
+                    { title: "MLB Season Preview", date: "Apr 2024", category: "Features", url: null, imageUrl: "PM_FeatSports_MLBPreview_042024.jpg", isPrint: true }
                 ],
                 2023: [
-                    { title: "Giants vs. Jets: A New York Rivalry Debate", date: "Nov 21, 2023", category: "Opinion", url: "https://thepelmelpmhs.com/9300/opinion/giants-vs-jets/" },
-                    { title: "96 Miles Book Review", date: "Oct 27, 2023", category: "Features", url: "https://thepelmelpmhs.com/9245/features/96-miles-book-review/" }
+                    { title: "Giants vs. Jets: A New York Rivalry Debate", date: "Nov 21, 2023", category: "Opinion", url: "https://thepelmelpmhs.com/9300/opinion/giants-vs-jets/", imageUrl: null, isPrint: false },
+                    { title: "96 Miles Book Review", date: "Oct 27, 2023", category: "Features", url: "https://thepelmelpmhs.com/9245/features/96-miles-book-review/", imageUrl: null, isPrint: false }
                 ]
             },
             examiner: {
                 2025: [
-                    { title: "Spring sports preview: Boys lacrosse undefeated, Taylor Green breaks scoring record", date: "Apr 14, 2025", category: "Sports", url: "https://pelhamexaminer.com/75513/sports/pmhs-teams-swing-into-spring-with-boys-lacrosse-undefeated-and-taylor-green-breaking-girls-lax-scoring-record/" },
-                    { title: "PMHS ice hockey loses 6-0 in Section One Division Two final to Rye", date: "Mar 4, 2025", category: "Sports", url: "https://pelhamexaminer.com/staff_name/conor-waters/" },
-                    { title: "PMHS girls basketball wins playoff quarterfinal 56-44 over Irvington", date: "Feb 27, 2025", category: "Sports", url: "https://pelhamexaminer.com/74737/sports/pmhs-girls-basketball-wins-playoff-quarterfinal-game-against-irvington-high-school/" },
-                    { title: "PMHS ice hockey defeats rival Rye 3-1 in late-season game", date: "Jan 21, 2025", category: "Sports", url: "https://pelhamexaminer.com/staff_name/conor-waters/" },
-                    { title: "PMHS football caps off 2025 regular season 35-20 over John Jay", date: "Oct 25, 2025", category: "Sports", url: "https://pelhamexaminer.com/79537/sports/pmhs-football-caps-off-2025-regular-season-with-road-win-over-john-jay-high-school-will-begin-playoff-campaign-saturday-at-pearl-river/" },
-                    { title: "PMHS football earns fourth win with dominant rushing vs Byram Hills", date: "Oct 11, 2025", category: "Sports", url: "https://pelhamexaminer.com/79102/sports/pmhs-football-team-earns-fourth-win-of-season-with-dominant-rushing-performance-versus-byram-hills-high-school-will-face-rye-neck-tonight/" },
-                    { title: "Westlake defeats PMHS football 34-14 at Glover Field", date: "Oct 4, 2025", category: "Sports", url: "https://pelhamexaminer.com/78954/latest-news/westlake-high-school-relies-on-relentless-ground-game-to-beat-pelicans-at-glover-field-34-14/" },
-                    { title: "PMHS football bounces back with 28-16 road win at Haldane", date: "Sep 28, 2025", category: "Sports", url: "https://pelhamexaminer.com/78893/latest-news/pmhs-varsity-football-bounces-back-from-first-loss-with-big-road-win-at-haldane-hosts-westlake-high-at-glover-on-friday/" },
-                    { title: "PMHS football suffers first loss in 42-35 thriller vs Dobbs Ferry", date: "Sep 21, 2025", category: "Sports", url: "https://pelhamexaminer.com/78777/sports/pmhs-varsity-football-suffers-first-loss-of-2025-in-offensive-tug-of-war-versus-dobbs-ferry-high-school/" }
+                    { title: "Spring sports preview: Boys lacrosse undefeated, Taylor Green breaks scoring record", date: "Apr 14, 2025", category: "Sports", url: "https://pelhamexaminer.com/75513/sports/pmhs-teams-swing-into-spring-with-boys-lacrosse-undefeated-and-taylor-green-breaking-girls-lax-scoring-record/", imageUrl: null, isPrint: false },
+                    { title: "PMHS ice hockey loses 6-0 in Section One Division Two final to Rye", date: "Mar 4, 2025", category: "Sports", url: "https://pelhamexaminer.com/staff_name/conor-waters/", imageUrl: null, isPrint: false },
+                    { title: "PMHS girls basketball wins playoff quarterfinal 56-44 over Irvington", date: "Feb 27, 2025", category: "Sports", url: "https://pelhamexaminer.com/74737/sports/pmhs-girls-basketball-wins-playoff-quarterfinal-game-against-irvington-high-school/", imageUrl: null, isPrint: false },
+                    { title: "PMHS ice hockey defeats rival Rye 3-1 in late-season game", date: "Jan 21, 2025", category: "Sports", url: "https://pelhamexaminer.com/staff_name/conor-waters/", imageUrl: null, isPrint: false },
+                    { title: "PMHS football caps off 2025 regular season 35-20 over John Jay", date: "Oct 25, 2025", category: "Sports", url: "https://pelhamexaminer.com/79537/sports/pmhs-football-caps-off-2025-regular-season-with-road-win-over-john-jay-high-school-will-begin-playoff-campaign-saturday-at-pearl-river/", imageUrl: null, isPrint: false },
+                    { title: "PMHS football earns fourth win with dominant rushing vs Byram Hills", date: "Oct 11, 2025", category: "Sports", url: "https://pelhamexaminer.com/79102/sports/pmhs-football-team-earns-fourth-win-of-season-with-dominant-rushing-performance-versus-byram-hills-high-school-will-face-rye-neck-tonight/", imageUrl: null, isPrint: false },
+                    { title: "Westlake defeats PMHS football 34-14 at Glover Field", date: "Oct 4, 2025", category: "Sports", url: "https://pelhamexaminer.com/78954/latest-news/westlake-high-school-relies-on-relentless-ground-game-to-beat-pelicans-at-glover-field-34-14/", imageUrl: null, isPrint: false },
+                    { title: "PMHS football bounces back with 28-16 road win at Haldane", date: "Sep 28, 2025", category: "Sports", url: "https://pelhamexaminer.com/78893/latest-news/pmhs-varsity-football-bounces-back-from-first-loss-with-big-road-win-at-haldane-hosts-westlake-high-at-glover-on-friday/", imageUrl: null, isPrint: false },
+                    { title: "PMHS football suffers first loss in 42-35 thriller vs Dobbs Ferry", date: "Sep 21, 2025", category: "Sports", url: "https://pelhamexaminer.com/78777/sports/pmhs-varsity-football-suffers-first-loss-of-2025-in-offensive-tug-of-war-versus-dobbs-ferry-high-school/", imageUrl: null, isPrint: false }
                 ],
                 2024: [
-                    { title: "PMHS girls basketball starts 2024-25 season with 5-0 record", date: "Dec 20, 2024", category: "Sports", url: "https://pelhamexaminer.com/staff_name/conor-waters/" },
-                    { title: "National signing day: Four PMHS athletes commit to Division I programs", date: "Nov 13, 2024", category: "Sports", url: "https://pelhamexaminer.com/72674/sports/pmhs-holds-division-i-national-signing-day-event-for-recruited-student-athletes/" },
-                    { title: "Four summer activities for Pelham residents to enjoy", date: "Aug 2024", category: "Community", url: "https://pelhamexaminer.com/78008/showcase/four-summer-activities-for-pelham-residents-to-enjoy-as-summer-begins-to-come-to-a-close/" }
+                    { title: "PMHS girls basketball starts 2024-25 season with 5-0 record", date: "Dec 20, 2024", category: "Sports", url: "https://pelhamexaminer.com/staff_name/conor-waters/", imageUrl: null, isPrint: false },
+                    { title: "National signing day: Four PMHS athletes commit to Division I programs", date: "Nov 13, 2024", category: "Sports", url: "https://pelhamexaminer.com/72674/sports/pmhs-holds-division-i-national-signing-day-event-for-recruited-student-athletes/", imageUrl: null, isPrint: false },
+                    { title: "Four summer activities for Pelham residents to enjoy", date: "Aug 2024", category: "Community", url: "https://pelhamexaminer.com/78008/showcase/four-summer-activities-for-pelham-residents-to-enjoy-as-summer-begins-to-come-to-a-close/", imageUrl: null, isPrint: false }
                 ]
             }
         };
@@ -376,11 +402,30 @@
             Object.keys(data).sort().reverse().forEach(year => {
                 html += `<div class="year-header ${color}">${year}</div><div class="article-list">`;
                 data[year].forEach(a => {
-                    html += `<div class="article-item ${color}" onclick="window.open('${a.url}','_blank')"><div class="article-info"><div class="article-meta"><span class="article-date">${a.date}</span><span class="article-category badge-${color}">${a.category}</span></div><div class="article-title">${a.title}</div></div><div class="article-arrow color-${color}">→</div></div>`;
+                    if (a.isPrint) {
+                        // Print article with image preview
+                        html += `<div class="article-item print-article ${color}" onclick="showImage('${a.imageUrl}', '${a.title.replace(/'/g, "\\'")}')"><div class="article-info"><div class="article-meta"><span class="article-date">${a.date}</span><span class="article-category badge-${color}">${a.category}</span><span class="print-badge">📰 Print</span></div><div class="article-title">${a.title}</div></div><div class="article-arrow color-${color}">👁️</div></div>`;
+                    } else {
+                        // Digital article with link
+                        html += `<div class="article-item ${color}" onclick="window.open('${a.url}','_blank')"><div class="article-info"><div class="article-meta"><span class="article-date">${a.date}</span><span class="article-category badge-${color}">${a.category}</span></div><div class="article-title">${a.title}</div></div><div class="article-arrow color-${color}">→</div></div>`;
+                    }
                 });
                 html += '</div>';
             });
             container.innerHTML = html;
+        }
+
+        function showImage(imageUrl, title) {
+            const modal = document.getElementById('imageModal');
+            const img = document.getElementById('modalImage');
+            const caption = document.getElementById('modalCaption');
+            img.src = imageUrl;
+            caption.textContent = title;
+            modal.style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('imageModal').style.display = 'none';
         }
 
         function toggleMenu() {
