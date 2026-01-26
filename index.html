@@ -6,418 +6,121 @@
     <title>Conor Waters - Journalism Portfolio</title>
     <meta name="description" content="Student journalist covering local news and sports. Associate Editor-in-Chief at The Pel Mel and Assistant Managing Editor at the Pelham Examiner.">
     <!-- 
-    ======================================
-    CONOR WATERS PORTFOLIO
-    Last Updated: January 20, 2026
-    
-    HOW TO UPDATE:
-    Come back to Claude and say "Update my portfolio"
-    Claude will search for latest articles and give you fresh files!
-    ====================================== 
+    UPDATED: January 20, 2026
+    - Email protection added
+    - Articles organized by year
+    - Full-width logos
+    - Bruce Beck veteran status corrected
+    - Role progression timeline added
+    - Redesigned article display (no images)
     -->
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background-color: #0a0a0a;
-            color: #ffffff;
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #0a0a0a; color: #ffffff; overflow-x: hidden; line-height: 1.6; }
         ::-webkit-scrollbar { width: 10px; }
         ::-webkit-scrollbar-track { background: #0a0a0a; }
         ::-webkit-scrollbar-thumb { background: #333; border-radius: 5px; }
 
-        /* Navigation */
-        .nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 70px;
-            background-color: transparent;
-            z-index: 999;
-            display: flex;
-            align-items: center;
-            padding: 0 2rem;
-            transition: all 0.3s;
-        }
-
-        .nav.scrolled {
-            background-color: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .menu-btn {
-            background: none;
-            border: none;
-            color: #ffffff;
-            cursor: pointer;
-            padding: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
-        .logo {
-            margin-left: auto;
-            font-size: 1.2rem;
-            font-weight: 700;
-        }
-
-        /* Side Menu */
-        .side-menu {
-            position: fixed;
-            top: 0;
-            left: -100%;
-            width: 400px;
-            max-width: 90vw;
-            height: 100vh;
-            background-color: #111111;
-            border-right: 1px solid rgba(255, 255, 255, 0.1);
-            z-index: 1000;
-            transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            padding: 2rem;
-            overflow-y: auto;
-        }
-
+        .nav { position: fixed; top: 0; left: 0; right: 0; height: 70px; background-color: transparent; z-index: 999; display: flex; align-items: center; padding: 0 2rem; transition: all 0.3s; }
+        .nav.scrolled { background-color: rgba(10, 10, 10, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+        .menu-btn { background: none; border: none; color: #fff; cursor: pointer; padding: 0.5rem; display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; font-weight: 600; }
+        .logo { margin-left: auto; font-size: 1.2rem; font-weight: 700; }
+        
+        .side-menu { position: fixed; top: 0; left: -100%; width: 400px; max-width: 90vw; height: 100vh; background-color: #111; border-right: 1px solid rgba(255, 255, 255, 0.1); z-index: 1000; transition: left 0.4s; padding: 2rem; overflow-y: auto; }
         .side-menu.open { left: 0; }
-        .overlay {
-            position: fixed;
-            inset: 0;
-            background-color: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(4px);
-            z-index: 998;
-            display: none;
-        }
+        .overlay { position: fixed; inset: 0; background-color: rgba(0, 0, 0, 0.7); backdrop-filter: blur(4px); z-index: 998; display: none; }
         .overlay.show { display: block; }
 
-        /* Hero */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 4rem 2rem 2rem;
-            background: linear-gradient(135deg, #0a0a0a 0%, #111111 100%);
-        }
-
+        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 4rem 2rem 2rem; background: linear-gradient(135deg, #0a0a0a 0%, #111 100%); }
         .hero-content { max-width: 900px; width: 100%; }
-        .hero-tag {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: #ff3b3b;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-            letter-spacing: 0.1em;
-        }
-
-        .hero h1 {
-            font-size: clamp(2.5rem, 8vw, 6rem);
-            font-weight: 800;
-            line-height: 1;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, #ffffff 0%, #888888 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero-subtitle {
-            font-size: clamp(1.1rem, 3vw, 1.5rem);
-            color: #888888;
-            margin-bottom: 2.5rem;
-        }
-
-        .badges {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-        }
-
-        .badge {
-            padding: 1.25rem 1.5rem;
-            border-radius: 12px;
-            transition: all 0.3s;
-        }
-
+        .hero-tag { font-size: 0.9rem; font-weight: 600; color: #ff3b3b; text-transform: uppercase; margin-bottom: 1rem; letter-spacing: 0.1em; }
+        .hero h1 { font-size: clamp(2.5rem, 8vw, 6rem); font-weight: 800; line-height: 1; margin-bottom: 1.5rem; background: linear-gradient(135deg, #fff 0%, #888 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero-subtitle { font-size: clamp(1.1rem, 3vw, 1.5rem); color: #888; margin-bottom: 2.5rem; }
+        
+        .badges { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+        .badge { padding: 1.25rem 1.5rem; border-radius: 12px; transition: all 0.3s; }
         .badge:hover { transform: translateY(-2px); }
         .badge-title { font-size: 0.75rem; margin-bottom: 0.25rem; text-transform: uppercase; }
         .badge-role { font-size: 0.9rem; font-weight: 600; line-height: 1.2; }
 
-        /* Sections */
-        section {
-            padding: clamp(3rem, 8vw, 6rem) 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
+        section { padding: clamp(3rem, 8vw, 6rem) 2rem; border-top: 1px solid rgba(255, 255, 255, 0.1); }
         .container { max-width: 1400px; margin: 0 auto; }
+        
+        .section-header { margin-bottom: 3rem; text-align: center; }
+        .section-logo { width: 100%; max-width: 500px; height: auto; margin: 0 auto 1.5rem; display: block; padding: 1.5rem; background-color: rgba(255, 255, 255, 0.95); border-radius: 12px; }
+        .section-logo img { width: 100%; height: auto; object-fit: contain; }
+        .section-subtitle { font-size: clamp(0.9rem, 2vw, 1rem); font-weight: 600; margin-top: 0.5rem; }
+        .role-history { font-size: 0.85rem; color: #888; margin-top: 0.75rem; line-height: 1.6; }
 
-        .section-header {
-            margin-bottom: 3rem;
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
+        .year-header { font-size: 1.5rem; font-weight: 700; margin: 2.5rem 0 1.5rem; padding-bottom: 0.5rem; border-bottom: 2px solid; }
+        .article-list { display: flex; flex-direction: column; gap: 1rem; }
+        .article-item { background-color: #111; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.08); padding: 1.25rem; cursor: pointer; transition: all 0.25s; display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+        .article-item:hover { transform: translateX(8px); border-color: currentColor; }
+        .article-info { flex-grow: 1; }
+        .article-meta { display: flex; gap: 1rem; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap; }
+        .article-date { font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 0.05em; }
+        .article-category { padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; }
+        .article-title { font-size: 1.05rem; font-weight: 600; line-height: 1.4; color: #fff; }
+        .article-arrow { font-size: 1.2rem; opacity: 0.6; transition: all 0.25s; }
+        .article-item:hover .article-arrow { opacity: 1; transform: translateX(4px); }
 
-        .section-logo {
-            width: 80px;
-            height: 80px;
-            border-radius: 12px;
-            background-color: rgba(255, 255, 255, 0.95);
-            padding: 0.75rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .section-logo img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        .section-header-content { flex-grow: 1; }
-        .section-header h2 {
-            font-size: clamp(2rem, 4vw, 2.5rem);
-            font-weight: 800;
-            margin-bottom: 0.5rem;
-        }
-
-        .section-subtitle {
-            font-size: clamp(0.9rem, 2vw, 1rem);
-            font-weight: 600;
-        }
-
-        /* Article Gallery */
-        .article-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr));
-            gap: 1.25rem;
-        }
-
-        .article-card {
-            background-color: #111111;
-            border-radius: 8px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            cursor: pointer;
-            transition: all 0.25s;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .article-card:hover { transform: translateY(-3px); }
-
-        .article-image {
-            width: 100%;
-            height: 140px;
-            position: relative;
-            overflow: hidden;
-            background: linear-gradient(135deg, #0a0a0a 0%, #111111 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .article-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: brightness(0.8);
-        }
-
-        .article-category {
-            position: absolute;
-            top: 0.5rem;
-            left: 0.5rem;
-            padding: 0.25rem 0.6rem;
-            border-radius: 4px;
-            font-size: 0.65rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-        }
-
-        .article-content {
-            padding: 0.9rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .article-date { font-size: 0.7rem; color: #888888; margin-bottom: 0.4rem; text-transform: uppercase; }
-
-        .article-title {
-            font-size: 0.95rem;
-            font-weight: 700;
-            line-height: 1.3;
-            color: #ffffff;
-            flex-grow: 1;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            margin-bottom: 0.6rem;
-        }
-
-        .article-link {
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
-            font-size: 0.75rem;
-            font-weight: 600;
-            margin-top: auto;
-        }
-
-        /* Videos */
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(min(350px, 100%), 1fr));
-            gap: 2rem;
-        }
-
-        .video-card {
-            background-color: rgba(255, 255, 255, 0.02);
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
+        .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 1.5rem; }
+        .video-card { background-color: rgba(255, 255, 255, 0.02); border-radius: 12px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.1); }
         .video-embed { position: relative; padding-bottom: 56.25%; background-color: #000; }
         .video-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
-        .video-content { padding: 1.5rem; }
+        .video-content { padding: 1rem; }
+        .video-year { font-size: 0.7rem; font-weight: 600; margin-bottom: 0.4rem; padding: 0.2rem 0.5rem; border-radius: 4px; display: inline-block; }
+        .video-year.veteran { background-color: rgba(34, 197, 94, 0.2); border: 1px solid rgba(34, 197, 94, 0.4); }
+        .video-title { font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; line-height: 1.3; }
+        .video-description { font-size: 0.85rem; color: #888; line-height: 1.4; }
 
-        .video-year {
-            font-size: 0.75rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            padding: 0.25rem 0.6rem;
-            border-radius: 4px;
-            display: inline-block;
-        }
-
-        .video-year.veteran {
-            background-color: rgba(34, 197, 94, 0.2);
-            border: 1px solid rgba(34, 197, 94, 0.4);
-        }
-
-        .video-title { font-size: clamp(1rem, 2vw, 1.2rem); font-weight: 700; margin-bottom: 0.5rem; }
-        .video-description { font-size: 0.9rem; color: #888888; line-height: 1.5; }
-
-        /* About */
-        .about-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
-            gap: clamp(2rem, 5vw, 4rem);
-        }
-
+        .about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: clamp(2rem, 5vw, 4rem); }
         .about-text h2 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin-bottom: 1.5rem; }
-        .about-text p { font-size: clamp(1rem, 2vw, 1.1rem); line-height: 1.8; color: #cccccc; margin-bottom: 2rem; }
+        .about-text p { font-size: clamp(1rem, 2vw, 1.1rem); line-height: 1.8; color: #ccc; margin-bottom: 2rem; }
+        .contact-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background-color: transparent; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; color: #fff; text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: all 0.3s; cursor: pointer; }
+        .contact-btn:hover { background-color: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.4); }
+        .experience-box { background-color: rgba(255, 255, 255, 0.02); padding: clamp(1.5rem, 3vw, 2.5rem); border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.1); }
+        .experience-item { margin-bottom: 1.5rem; }
+        .experience-item:last-child { margin-bottom: 0; }
+        .experience-role { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.25rem; }
+        .experience-org { color: #888; font-size: 0.9rem; }
+        .experience-years { color: #666; font-size: 0.85rem; font-style: italic; margin-top: 0.25rem; }
 
-        .contact-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.75rem 1.5rem;
-            background-color: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-
-        .contact-btn:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.4);
-        }
-
-        .experience-box {
-            background-color: rgba(255, 255, 255, 0.02);
-            padding: clamp(1.5rem, 3vw, 2.5rem);
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        /* Contact */
         .contact-section { text-align: center; }
         .contact-section h2 { font-size: clamp(2rem, 4vw, 2.5rem); font-weight: 800; margin-bottom: 1rem; }
-
-        .email-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 1rem 2rem;
-            background-color: #ff3b3b;
-            border: none;
-            border-radius: 8px;
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 1rem;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-
+        .email-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 2rem; background-color: #ff3b3b; border: none; border-radius: 8px; color: #fff; text-decoration: none; font-size: 1rem; font-weight: 600; transition: all 0.3s; cursor: pointer; }
         .email-btn:hover { background-color: #e63333; transform: translateY(-2px); }
 
-        footer {
-            padding: 2rem;
-            text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #666666;
-            font-size: 0.85rem;
-        }
+        footer { padding: 2rem; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.1); color: #666; font-size: 0.85rem; }
 
-        /* Colors */
         .color-red { color: #ff3b3b; }
         .bg-red { background-color: rgba(255, 59, 59, 0.1); border: 1px solid rgba(255, 59, 59, 0.3); }
         .badge-red { background-color: #ff3b3b; }
-        .hover-red:hover { border-color: #ff3b3b; box-shadow: 0 8px 24px rgba(255, 59, 59, 0.2); }
+        .year-header.red { border-color: #ff3b3b; color: #ff3b3b; }
+        .article-item.red:hover { border-color: #ff3b3b; }
 
         .color-blue { color: #3b82f6; }
         .bg-blue { background-color: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); }
         .badge-blue { background-color: #3b82f6; }
-        .hover-blue:hover { border-color: #3b82f6; box-shadow: 0 8px 24px rgba(59, 130, 246, 0.2); }
+        .year-header.blue { border-color: #3b82f6; color: #3b82f6; }
+        .article-item.blue:hover { border-color: #3b82f6; }
 
         .color-green { color: #22c55e; }
         .bg-green { background-color: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94, 0.3); }
         .badge-green { background-color: #22c55e; }
 
-        /* Mobile */
         @media (max-width: 768px) {
             .nav { padding: 0 1rem; }
             section { padding: 3rem 1rem; }
             .hero { padding: 3rem 1rem 2rem; }
             .badges { grid-template-columns: 1fr; }
-            .section-logo { width: 64px; height: 64px; }
-            .section-header { gap: 1rem; }
-            .article-grid, .video-grid { grid-template-columns: 1fr; }
-        }
-
-        @media (max-width: 480px) {
-            .section-logo { width: 56px; height: 56px; }
+            .section-logo { max-width: 100%; padding: 1rem; }
         }
     </style>
 </head>
 <body>
     <nav class="nav" id="topNav">
-        <button class="menu-btn" onclick="toggleMenu()" aria-label="Toggle menu">
-            <span id="menuIcon">☰</span> Menu
-        </button>
+        <button class="menu-btn" onclick="toggleMenu()"><span id="menuIcon">☰</span> Menu</button>
         <div class="logo">CW</div>
     </nav>
 
@@ -433,7 +136,7 @@
             <button onclick="scrollToSection('contact')" style="background: none; border: none; color: #888; padding: 1rem; text-align: left; cursor: pointer; font-size: 1.1rem; font-weight: 600; border-radius: 8px;">Contact</button>
         </nav>
         <div style="padding: 1.5rem; background-color: rgba(255, 255, 255, 0.05); border-radius: 12px;">
-            <h3 style="font-size: 0.9rem; font-weight: 700; text-transform: uppercase; margin-bottom: 1rem; color: #888888;">Quick Facts</h3>
+            <h3 style="font-size: 0.9rem; font-weight: 700; text-transform: uppercase; margin-bottom: 1rem; color: #888;">Quick Facts</h3>
             <div style="display: flex; flex-direction: column; gap: 0.75rem;">
                 <div><div style="color: #888; font-size: 0.75rem; margin-bottom: 0.25rem;">School</div><div>Pelham Memorial High School</div></div>
                 <div><div style="color: #888; font-size: 0.75rem; margin-bottom: 0.25rem;">Location</div><div>Pelham, NY</div></div>
@@ -460,7 +163,7 @@
                 </div>
                 <div class="badge bg-green">
                     <div class="badge-title color-green">Bruce Beck Camp</div>
-                    <div class="badge-role">Veteran Participant (2023-2026)</div>
+                    <div class="badge-role">Veteran Participant</div>
                 </div>
             </div>
         </div>
@@ -471,31 +174,39 @@
             <div class="about-grid">
                 <div class="about-text">
                     <h2>About Me</h2>
-                    <p>Student journalist covering local news and sports through both written and broadcast media. Currently serving as Associate Editor-in-Chief at The Pel Mel and Assistant Managing Editor at the Pelham Examiner. Veteran participant in the Bruce Beck Broadcasting Camp (2023-2026), where I've honed my skills in play-by-play commentary, on-camera reporting, and sports journalism.</p>
-                    <a href="mailto:conor.waters@example.com" class="contact-btn">📧 Get In Touch</a>
+                    <p>Student journalist covering local news and sports through both written and broadcast media. Currently serving as Associate Editor-in-Chief at The Pel Mel and Assistant Managing Editor at the Pelham Examiner. Veteran participant in the Bruce Beck Broadcasting Camp, where I've honed my skills in play-by-play commentary, on-camera reporting, and sports journalism.</p>
+                    <button onclick="showContact()" class="contact-btn">📧 Get In Touch</button>
                 </div>
                 <div class="experience-box">
-                    <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 2rem;">Experience</h3>
-                    <div style="display: flex; flex-direction: column; gap: 2rem;">
-                        <div><div style="font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem;">Associate Editor-in-Chief</div><div style="color: #888; font-size: 0.9rem;">The Pel Mel</div></div>
-                        <div><div style="font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem;">Assistant Managing Editor</div><div style="color: #888; font-size: 0.9rem;">Pelham Examiner</div></div>
-                        <div><div style="font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem;">Veteran Participant</div><div style="color: #888; font-size: 0.9rem;">Bruce Beck Broadcasting Camp • 2023-2026</div></div>
+                    <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 2rem;">Experience Timeline</h3>
+                    <div class="experience-item">
+                        <div class="experience-role">The Pel Mel</div>
+                        <div class="experience-org">Pelham Memorial High School Newspaper</div>
+                        <div class="experience-years">2023-2024: Reporter<br>2024-2025: Sports Editor<br>2025-2026: Associate Editor-in-Chief</div>
+                    </div>
+                    <div class="experience-item">
+                        <div class="experience-role">Pelham Examiner</div>
+                        <div class="experience-org">Community News Publication</div>
+                        <div class="experience-years">2024-2025: Sports Editor<br>2025-2026: Assistant Managing Editor</div>
+                    </div>
+                    <div class="experience-item">
+                        <div class="experience-role">Bruce Beck Broadcasting Camp</div>
+                        <div class="experience-org">NBC 4 Sports Broadcasting Training</div>
+                        <div class="experience-years">2023: Camp Participant<br>2024: Camp Participant<br>2025: Veteran Camp Participant<br>2026: Veteran Camp Participant (upcoming)</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="pel-mel" style="background-color: #111111;">
+    <section id="pel-mel" style="background-color: #111;">
         <div class="container">
             <div class="section-header">
                 <div class="section-logo"><img src="pelmel-logo.png" alt="The Pel Mel"></div>
-                <div class="section-header-content">
-                    <h2>The Pel Mel</h2>
-                    <div class="section-subtitle color-red">Associate Editor-in-Chief • School Newspaper</div>
-                </div>
+                <div class="section-subtitle color-red">Associate Editor-in-Chief • School Newspaper</div>
+                <div class="role-history">Reporter (2023-2024) • Sports Editor (2024-2025) • Associate Editor-in-Chief (2025-2026)</div>
             </div>
-            <div class="article-grid" id="pelMelArticles"></div>
+            <div id="pelMelArticles"></div>
         </div>
     </section>
 
@@ -503,44 +214,89 @@
         <div class="container">
             <div class="section-header">
                 <div class="section-logo"><img src="examiner-logo.jpg" alt="Pelham Examiner"></div>
-                <div class="section-header-content">
-                    <h2>Pelham Examiner</h2>
-                    <div class="section-subtitle color-blue">Assistant Managing Editor • Community News</div>
-                </div>
+                <div class="section-subtitle color-blue">Assistant Managing Editor • Community News</div>
+                <div class="role-history">Sports Editor (2024-2025) • Assistant Managing Editor (2025-2026)</div>
             </div>
-            <div class="article-grid" id="examinerArticles"></div>
+            <div id="examinerArticles"></div>
         </div>
     </section>
 
-    <section id="broadcasting" style="background-color: #111111;">
+    <section id="broadcasting" style="background-color: #111;">
         <div class="container">
             <div class="section-header">
-                <div class="section-logo" style="background-color: rgba(34, 197, 94, 0.1); font-size: 2.5rem;">🎙️</div>
-                <div class="section-header-content">
-                    <h2>Bruce Beck Broadcasting Camp</h2>
-                    <div class="section-subtitle color-green">2023-2026 • Veteran Participant</div>
-                </div>
+                <div style="font-size: 4rem; margin-bottom: 1rem;">🎙️</div>
+                <h2 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem;">Bruce Beck Broadcasting Camp</h2>
+                <div class="section-subtitle color-green">NBC 4 Sports Broadcasting Training</div>
+                <div class="role-history">Camp Participant (2023, 2024) • Veteran Camp Participant (2025, 2026 upcoming)</div>
             </div>
-            <div class="video-grid">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 1.5rem;">
                 <div class="video-card">
-                    <div class="video-embed"><iframe src="https://www.youtube.com/embed/U0iLdhi3Vng" allowfullscreen title="Bruce Beck Camp 2024"></iframe></div>
+                    <div class="video-embed"><iframe src="https://www.youtube.com/embed/fil0n0nbWFg" allowfullscreen title="Bruce Beck Camp Video 1"></iframe></div>
                     <div class="video-content">
-                        <div class="video-year veteran color-green">2024 • Veteran</div>
-                        <h4 class="video-title">Bruce Beck Sports Broadcasting Camp 2024</h4>
-                        <p class="video-description">Highlights from the 2024 camp including play-by-play calls and behind-the-scenes training with top NYC sportscasters</p>
+                        <div class="video-year veteran color-green">2025 • Veteran</div>
+                        <h4 class="video-title">Camp Highlights</h4>
+                        <p class="video-description">Broadcasting training and practice sessions</p>
                     </div>
                 </div>
                 <div class="video-card">
-                    <div class="video-embed"><iframe src="https://www.youtube.com/embed/A2D0BlXQpL8" allowfullscreen title="Sports Broadcasting Training"></iframe></div>
+                    <div class="video-embed"><iframe src="https://www.youtube.com/embed/CF1icxvbfLU" allowfullscreen title="Bruce Beck Camp Video 2"></iframe></div>
+                    <div class="video-content">
+                        <div class="video-year veteran color-green">2025 • Veteran</div>
+                        <h4 class="video-title">Sports Commentary</h4>
+                        <p class="video-description">Play-by-play practice and reporting</p>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-embed"><iframe src="https://www.youtube.com/embed/r2nK_UQYhwk" allowfullscreen title="Bruce Beck Camp Video 3"></iframe></div>
+                    <div class="video-content">
+                        <div class="video-year veteran color-green">2025 • Veteran</div>
+                        <h4 class="video-title">On-Camera Training</h4>
+                        <p class="video-description">Live reporting and interview techniques</p>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-embed"><iframe src="https://www.youtube.com/embed/uB6JaLcLg8U" allowfullscreen title="Bruce Beck Camp Video 4"></iframe></div>
+                    <div class="video-content">
+                        <div class="video-year veteran color-green">2025 • Veteran</div>
+                        <h4 class="video-title">Broadcasting Sessions</h4>
+                        <p class="video-description">Studio work and field reporting</p>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-embed"><iframe src="https://www.youtube.com/embed/LarCmWPwoWs" allowfullscreen title="Bruce Beck Camp Video 5"></iframe></div>
+                    <div class="video-content">
+                        <div class="video-year veteran color-green">2025 • Veteran</div>
+                        <h4 class="video-title">Game Day Coverage</h4>
+                        <p class="video-description">Live game commentary practice</p>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-embed"><iframe src="https://www.youtube.com/embed/U0iLdhi3Vng" allowfullscreen title="Bruce Beck Camp 2024 Highlights"></iframe></div>
+                    <div class="video-content">
+                        <div class="video-year color-green">2024</div>
+                        <h4 class="video-title">Camp Highlights 2024</h4>
+                        <p class="video-description">Play-by-play calls with top sportscasters</p>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-embed"><iframe src="https://www.youtube.com/embed/A2D0BlXQpL8" allowfullscreen title="Broadcasting Training 2024"></iframe></div>
+                    <div class="video-content">
+                        <div class="video-year color-green">2024</div>
+                        <h4 class="video-title">Training Sessions 2024</h4>
+                        <p class="video-description">Live game commentary practice</p>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-embed"><iframe src="https://www.youtube.com/embed/zlRz-ARVG1c" allowfullscreen title="Bruce Beck Camp 2023"></iframe></div>
                     <div class="video-content">
                         <div class="video-year color-green">2023</div>
-                        <h4 class="video-title">Sports Broadcasting Training Sessions</h4>
-                        <p class="video-description">Live game commentary and sports journalism practice sessions from Bruce Beck Broadcasting Camp</p>
+                        <h4 class="video-title">Camp Experience 2023</h4>
+                        <p class="video-description">First year at broadcasting camp</p>
                     </div>
                 </div>
             </div>
             <div style="margin-top: 2rem; padding: 1.5rem; background-color: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 12px;">
-                <p style="font-size: 0.95rem; color: #cccccc; line-height: 1.6;"><strong class="color-green">2025 & 2026 Veteran Camp Participant</strong> • Advanced training in sports broadcasting, play-by-play commentary, and on-camera reporting with NBC 4's Emmy-winning anchor Bruce Beck and top NYC sportscasters.</p>
+                <p style="font-size: 0.95rem; color: #ccc; line-height: 1.6;"><strong class="color-green">2025 & 2026 (upcoming) Veteran Camp Participant</strong> • Advanced training program in sports broadcasting, play-by-play commentary, and on-camera reporting with NBC 4's Emmy-winning anchor Bruce Beck and top NYC sportscasters.</p>
             </div>
         </div>
     </section>
@@ -549,42 +305,63 @@
         <div class="container" style="max-width: 600px;">
             <h2>Let's Connect</h2>
             <p style="font-size: 1rem; color: #888; margin-bottom: 2rem;">Interested in my journalism work? I'd love to hear from you.</p>
-            <a href="mailto:conor.waters@example.com" class="email-btn">📧 Email Me</a>
+            <button onclick="showContact()" class="email-btn">📧 Email Me</button>
         </div>
     </section>
 
-    <footer><p>© 2024 Conor Waters. All rights reserved.</p></footer>
+    <footer><p>© 2026 Conor Waters. All rights reserved.</p></footer>
 
     <script>
+        function showContact() {
+            window.location.href = 'mailto:' + 'waterscon123' + '@' + 'gmail.com';
+        }
+
         const articles = {
-            pelMel: [
-                { title: "PMHS Merges with Eastchester to Form Wrestling Team", date: "Feb 13, 2025", category: "Sports", url: "https://thepelmelpmhs.com/10011/news/pmhs-merges-with-eastchester-to-form-wrestling-team/", imageUrl: null },
-                { title: "Giants vs. Jets: A New York Rivalry Debate", date: "Nov 21, 2023", category: "Opinion", url: "https://thepelmelpmhs.com/9300/opinion/giants-vs-jets/", imageUrl: null },
-                { title: "96 Miles Book Review", date: "Oct 27, 2023", category: "Features", url: "https://thepelmelpmhs.com/9245/features/96-miles-book-review/", imageUrl: null }
-            ],
-            examiner: [
-                { title: "Spring sports preview: Boys lacrosse undefeated, Taylor Green breaks scoring record", date: "Apr 14, 2025", category: "Sports", url: "https://pelhamexaminer.com/75513/sports/pmhs-teams-swing-into-spring-with-boys-lacrosse-undefeated-and-taylor-green-breaking-girls-lax-scoring-record/", imageUrl: null },
-                { title: "PMHS ice hockey loses 6-0 in Section One Division Two final to Rye", date: "Mar 4, 2025", category: "Sports", url: "https://pelhamexaminer.com/staff_name/conor-waters/", imageUrl: null },
-                { title: "PMHS girls basketball wins playoff quarterfinal 56-44 over Irvington", date: "Feb 27, 2025", category: "Sports", url: "https://pelhamexaminer.com/74737/sports/pmhs-girls-basketball-wins-playoff-quarterfinal-game-against-irvington-high-school/", imageUrl: null },
-                { title: "PMHS ice hockey defeats rival Rye 3-1 in late-season game", date: "Jan 21, 2025", category: "Sports", url: "https://pelhamexaminer.com/staff_name/conor-waters/", imageUrl: null },
-                { title: "PMHS girls basketball starts 2024-25 season with 5-0 record", date: "Dec 20, 2024", category: "Sports", url: "https://pelhamexaminer.com/staff_name/conor-waters/", imageUrl: null },
-                { title: "National signing day: Four PMHS athletes commit to Division I programs", date: "Nov 13, 2024", category: "Sports", url: "https://pelhamexaminer.com/72674/sports/pmhs-holds-division-i-national-signing-day-event-for-recruited-student-athletes/", imageUrl: null },
-                { title: "PMHS football caps off 2025 regular season 35-20 over John Jay", date: "Oct 25, 2025", category: "Sports", url: "https://pelhamexaminer.com/79537/sports/pmhs-football-caps-off-2025-regular-season-with-road-win-over-john-jay-high-school-will-begin-playoff-campaign-saturday-at-pearl-river/", imageUrl: null },
-                { title: "PMHS football earns fourth win with dominant rushing vs Byram Hills", date: "Oct 11, 2025", category: "Sports", url: "https://pelhamexaminer.com/79102/sports/pmhs-football-team-earns-fourth-win-of-season-with-dominant-rushing-performance-versus-byram-hills-high-school-will-face-rye-neck-tonight/", imageUrl: null },
-                { title: "Westlake defeats PMHS football 34-14 at Glover Field", date: "Oct 4, 2025", category: "Sports", url: "https://pelhamexaminer.com/78954/latest-news/westlake-high-school-relies-on-relentless-ground-game-to-beat-pelicans-at-glover-field-34-14/", imageUrl: null },
-                { title: "PMHS football bounces back with 28-16 road win at Haldane", date: "Sep 28, 2025", category: "Sports", url: "https://pelhamexaminer.com/78893/latest-news/pmhs-varsity-football-bounces-back-from-first-loss-with-big-road-win-at-haldane-hosts-westlake-high-at-glover-on-friday/", imageUrl: null },
-                { title: "PMHS football suffers first loss in 42-35 thriller vs Dobbs Ferry", date: "Sep 21, 2025", category: "Sports", url: "https://pelhamexaminer.com/78777/sports/pmhs-varsity-football-suffers-first-loss-of-2025-in-offensive-tug-of-war-versus-dobbs-ferry-high-school/", imageUrl: null },
-                { title: "Four summer activities for Pelham residents to enjoy", date: "Aug 2024", category: "Community", url: "https://pelhamexaminer.com/78008/showcase/four-summer-activities-for-pelham-residents-to-enjoy-as-summer-begins-to-come-to-a-close/", imageUrl: null }
-            ]
+            pelMel: {
+                2025: [
+                    { title: "PMHS Merges with Eastchester to Form Wrestling Team", date: "Feb 13, 2025", category: "Sports", url: "https://thepelmelpmhs.com/10011/news/pmhs-merges-with-eastchester-to-form-wrestling-team/" }
+                ],
+                2023: [
+                    { title: "Giants vs. Jets: A New York Rivalry Debate", date: "Nov 21, 2023", category: "Opinion", url: "https://thepelmelpmhs.com/9300/opinion/giants-vs-jets/" },
+                    { title: "96 Miles Book Review", date: "Oct 27, 2023", category: "Features", url: "https://thepelmelpmhs.com/9245/features/96-miles-book-review/" }
+                ]
+            },
+            examiner: {
+                2025: [
+                    { title: "Spring sports preview: Boys lacrosse undefeated, Taylor Green breaks scoring record", date: "Apr 14, 2025", category: "Sports", url: "https://pelhamexaminer.com/75513/sports/pmhs-teams-swing-into-spring-with-boys-lacrosse-undefeated-and-taylor-green-breaking-girls-lax-scoring-record/" },
+                    { title: "PMHS ice hockey loses 6-0 in Section One Division Two final to Rye", date: "Mar 4, 2025", category: "Sports", url: "https://pelhamexaminer.com/staff_name/conor-waters/" },
+                    { title: "PMHS girls basketball wins playoff quarterfinal 56-44 over Irvington", date: "Feb 27, 2025", category: "Sports", url: "https://pelhamexaminer.com/74737/sports/pmhs-girls-basketball-wins-playoff-quarterfinal-game-against-irvington-high-school/" },
+                    { title: "PMHS ice hockey defeats rival Rye 3-1 in late-season game", date: "Jan 21, 2025", category: "Sports", url: "https://pelhamexaminer.com/staff_name/conor-waters/" },
+                    { title: "PMHS football caps off 2025 regular season 35-20 over John Jay", date: "Oct 25, 2025", category: "Sports", url: "https://pelhamexaminer.com/79537/sports/pmhs-football-caps-off-2025-regular-season-with-road-win-over-john-jay-high-school-will-begin-playoff-campaign-saturday-at-pearl-river/" },
+                    { title: "PMHS football earns fourth win with dominant rushing vs Byram Hills", date: "Oct 11, 2025", category: "Sports", url: "https://pelhamexaminer.com/79102/sports/pmhs-football-team-earns-fourth-win-of-season-with-dominant-rushing-performance-versus-byram-hills-high-school-will-face-rye-neck-tonight/" },
+                    { title: "Westlake defeats PMHS football 34-14 at Glover Field", date: "Oct 4, 2025", category: "Sports", url: "https://pelhamexaminer.com/78954/latest-news/westlake-high-school-relies-on-relentless-ground-game-to-beat-pelicans-at-glover-field-34-14/" },
+                    { title: "PMHS football bounces back with 28-16 road win at Haldane", date: "Sep 28, 2025", category: "Sports", url: "https://pelhamexaminer.com/78893/latest-news/pmhs-varsity-football-bounces-back-from-first-loss-with-big-road-win-at-haldane-hosts-westlake-high-at-glover-on-friday/" },
+                    { title: "PMHS football suffers first loss in 42-35 thriller vs Dobbs Ferry", date: "Sep 21, 2025", category: "Sports", url: "https://pelhamexaminer.com/78777/sports/pmhs-varsity-football-suffers-first-loss-of-2025-in-offensive-tug-of-war-versus-dobbs-ferry-high-school/" }
+                ],
+                2024: [
+                    { title: "PMHS girls basketball starts 2024-25 season with 5-0 record", date: "Dec 20, 2024", category: "Sports", url: "https://pelhamexaminer.com/staff_name/conor-waters/" },
+                    { title: "National signing day: Four PMHS athletes commit to Division I programs", date: "Nov 13, 2024", category: "Sports", url: "https://pelhamexaminer.com/72674/sports/pmhs-holds-division-i-national-signing-day-event-for-recruited-student-athletes/" },
+                    { title: "Four summer activities for Pelham residents to enjoy", date: "Aug 2024", category: "Community", url: "https://pelhamexaminer.com/78008/showcase/four-summer-activities-for-pelham-residents-to-enjoy-as-summer-begins-to-come-to-a-close/" }
+                ]
+            }
         };
 
         function renderArticles() {
-            document.getElementById('pelMelArticles').innerHTML = articles.pelMel.map(a => createCard(a, 'red')).join('');
-            document.getElementById('examinerArticles').innerHTML = articles.examiner.map(a => createCard(a, 'blue')).join('');
+            renderPub('pelMelArticles', articles.pelMel, 'red');
+            renderPub('examinerArticles', articles.examiner, 'blue');
         }
 
-        function createCard(a, c) {
-            return `<div class="article-card hover-${c}" onclick="window.open('${a.url}','_blank')"><div class="article-image">${a.imageUrl?`<img src="${a.imageUrl}" alt="${a.title}">`:'<div style="font-size:2rem;opacity:0.3">📰</div>'}<div class="article-category badge-${c}">${a.category}</div></div><div class="article-content"><div class="article-date">${a.date}</div><h3 class="article-title">${a.title}</h3><div class="article-link color-${c}">Read →</div></div></div>`;
+        function renderPub(id, data, color) {
+            const container = document.getElementById(id);
+            let html = '';
+            Object.keys(data).sort().reverse().forEach(year => {
+                html += `<div class="year-header ${color}">${year}</div><div class="article-list">`;
+                data[year].forEach(a => {
+                    html += `<div class="article-item ${color}" onclick="window.open('${a.url}','_blank')"><div class="article-info"><div class="article-meta"><span class="article-date">${a.date}</span><span class="article-category badge-${color}">${a.category}</span></div><div class="article-title">${a.title}</div></div><div class="article-arrow color-${color}">→</div></div>`;
+                });
+                html += '</div>';
+            });
+            container.innerHTML = html;
         }
 
         function toggleMenu() {
@@ -604,17 +381,6 @@
         });
 
         renderArticles();
-
-        let touchStartX = 0;
-        document.addEventListener('touchstart', e => touchStartX = e.changedTouches[0].screenX);
-        document.addEventListener('touchend', e => {
-            const diff = e.changedTouches[0].screenX - touchStartX;
-            const menu = document.getElementById('sideMenu');
-            if (Math.abs(diff) > 50) {
-                if (diff > 0 && !menu.classList.contains('open')) toggleMenu();
-                if (diff < 0 && menu.classList.contains('open')) toggleMenu();
-            }
-        });
     </script>
 </body>
 </html>
