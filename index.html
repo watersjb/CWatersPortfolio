@@ -107,6 +107,9 @@
         .email-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 2rem; background-color: #ff3b3b; border: none; border-radius: 8px; color: #fff; text-decoration: none; font-size: 1rem; font-weight: 600; transition: all 0.3s; cursor: pointer; }
         .email-btn:hover { background-color: #e63333; transform: translateY(-2px); }
 
+        .back-to-top { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background-color: transparent; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; color: #ffffff; font-size: 0.9rem; font-weight: 600; transition: all 0.3s; cursor: pointer; }
+        .back-to-top:hover { background-color: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.4); transform: translateY(-2px); }
+
         footer { padding: 2rem; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.1); color: #666; font-size: 0.85rem; }
 
         .color-red { color: #ff3b3b; }
@@ -169,15 +172,15 @@
             <h1>Conor Waters</h1>
             <p class="hero-subtitle">Student Journalist & Sports Broadcaster</p>
             <div class="badges">
-                <div class="badge bg-red">
+                <div class="badge bg-red" onclick="scrollToSection('pel-mel')" style="cursor: pointer;">
                     <div class="badge-title color-red">The Pel Mel</div>
                     <div class="badge-role">Associate Editor-in-Chief</div>
                 </div>
-                <div class="badge bg-blue">
+                <div class="badge bg-blue" onclick="scrollToSection('examiner')" style="cursor: pointer;">
                     <div class="badge-title color-blue">Pelham Examiner</div>
                     <div class="badge-role">Assistant Managing Editor</div>
                 </div>
-                <div class="badge bg-green">
+                <div class="badge bg-green" onclick="scrollToSection('broadcasting')" style="cursor: pointer;">
                     <div class="badge-title color-green">Bruce Beck Camp</div>
                     <div class="badge-role">Veteran Participant</div>
                 </div>
@@ -223,6 +226,9 @@
                 <div class="role-history">Reporter (2023-2024) • Sports Editor (2024-2025) • Associate Editor-in-Chief (2025-2026)</div>
             </div>
             <div id="pelMelArticles"></div>
+            <div style="text-align: center; margin-top: 3rem;">
+                <button onclick="scrollToSection('home')" class="back-to-top">↑ Back to Top</button>
+            </div>
         </div>
     </section>
 
@@ -234,6 +240,9 @@
                 <div class="role-history">Sports Editor (2024-2025) • Assistant Managing Editor (2025-2026)</div>
             </div>
             <div id="examinerArticles"></div>
+            <div style="text-align: center; margin-top: 3rem;">
+                <button onclick="scrollToSection('home')" class="back-to-top">↑ Back to Top</button>
+            </div>
         </div>
     </section>
 
@@ -325,6 +334,9 @@
             </div>
             <div style="margin-top: 2rem; padding: 1.5rem; background-color: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 12px;">
                 <p style="font-size: 0.95rem; color: #ccc; line-height: 1.6;"><strong class="color-green">2025 & 2026 (upcoming) Veteran Camp Participant</strong> • Advanced training program in sports broadcasting, play-by-play commentary, and on-camera reporting with NBC 4's Emmy-winning anchor Bruce Beck and top NYC sportscasters.</p>
+            </div>
+            <div style="text-align: center; margin-top: 3rem;">
+                <button onclick="scrollToSection('home')" class="back-to-top">↑ Back to Top</button>
             </div>
         </div>
     </section>
