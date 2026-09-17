@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conor Waters - Journalism Portfolio</title>
-    <meta name="description" content="Student journalist covering local news and sports. Associate Editor-in-Chief at The Pel Mel and Assistant Managing Editor at the Pelham Examiner.">
+    <meta name="description" content="Student journalist covering local news and sports. Editor-in-Chief at The Pel Mel and Contributing Editor at the Pelham Examiner.">
     <!-- 
     UPDATED: January 20, 2026
     - Email protection added
@@ -174,11 +174,11 @@
             <div class="badges">
                 <div class="badge bg-red" onclick="jumpTo('pel-mel')" style="cursor: pointer;">
                     <div class="badge-title color-red">The Pel Mel</div>
-                    <div class="badge-role">Associate Editor-in-Chief</div>
+                    <div class="badge-role">Editor-in-Chief</div>
                 </div>
                 <div class="badge bg-blue" onclick="jumpTo('examiner')" style="cursor: pointer;">
                     <div class="badge-title color-blue">Pelham Examiner</div>
-                    <div class="badge-role">Assistant Managing Editor</div>
+                    <div class="badge-role">Contributing Editor</div>
                 </div>
                 <div class="badge bg-green" onclick="jumpTo('broadcasting')" style="cursor: pointer;">
                     <div class="badge-title color-green">Bruce Beck Camp</div>
@@ -193,7 +193,7 @@
             <div class="about-grid">
                 <div class="about-text">
                     <h2>About Me</h2>
-                    <p>Student journalist covering local news and sports through both written and broadcast media. Currently serving as Associate Editor-in-Chief at The Pel Mel and Assistant Managing Editor at the Pelham Examiner. Veteran participant in the Bruce Beck Broadcasting Camp, where I've honed my skills in play-by-play commentary, on-camera reporting, and sports journalism.</p>
+                    <p>Student journalist covering local news and sports through both written and broadcast media. Currently serving as Editor-in-Chief at The Pel Mel and Contributing Editor at the Pelham Examiner. Veteran participant in the Bruce Beck Broadcasting Camp, where I've honed my skills in play-by-play commentary, on-camera reporting, and sports journalism.</p>
                     <button onclick="showContact()" class="contact-btn">📧 Get In Touch</button>
                 </div>
                 <div class="experience-box">
@@ -201,12 +201,12 @@
                     <div class="experience-item">
                         <div class="experience-role">The Pel Mel</div>
                         <div class="experience-org">Pelham Memorial High School Newspaper</div>
-                        <div class="experience-years">2023-2024: Reporter<br>2024-2025: Sports Editor<br>2025-2026: Associate Editor-in-Chief</div>
+                        <div class="experience-years">2023-2024: Reporter<br>2024-2025: Sports Editor<br>2025-2026: Associate Editor-in-Chief<br>2026-2027: Editor-in-Chief</div>
                     </div>
                     <div class="experience-item">
                         <div class="experience-role">Pelham Examiner</div>
                         <div class="experience-org">Community News Publication</div>
-                        <div class="experience-years">2024-2025: Sports Editor<br>2025-2026: Assistant Managing Editor</div>
+                        <div class="experience-years">2024-2025: Sports Editor<br>2025-2026: Assistant Managing Editor<br>2026-2027: Contributing Editor</div>
                     </div>
                     <div class="experience-item">
                         <div class="experience-role">Bruce Beck Broadcasting Camp</div>
@@ -222,8 +222,8 @@
         <div class="container">
             <div class="section-header">
                 <div class="section-logo"><img src="pelmel-logo.png" alt="The Pel Mel"></div>
-                <div class="section-subtitle color-red">Associate Editor-in-Chief • School Newspaper</div>
-                <div class="role-history">Reporter (2023-2024) • Sports Editor (2024-2025) • Associate Editor-in-Chief (2025-2026)</div>
+                <div class="section-subtitle color-red">Editor-in-Chief • School Newspaper</div>
+                <div class="role-history">Reporter (2023-2024) • Sports Editor (2024-2025) • Associate Editor-in-Chief (2025-2026) • Editor-in-Chief (2026-2027)</div>
             </div>
             <div id="pelMelArticles"></div>
             <div style="text-align: center; margin-top: 3rem;">
@@ -236,8 +236,8 @@
         <div class="container">
             <div class="section-header">
                 <div class="section-logo"><img src="examiner-logo.jpg" alt="Pelham Examiner"></div>
-                <div class="section-subtitle color-blue">Assistant Managing Editor • Community News</div>
-                <div class="role-history">Sports Editor (2024-2025) • Assistant Managing Editor (2025-2026)</div>
+                <div class="section-subtitle color-blue">Contributing Editor • Community News</div>
+                <div class="role-history">Sports Editor (2024-2025) • Assistant Managing Editor (2025-2026) • Contributing Editor (2026-2027)</div>
             </div>
             <div id="examinerArticles"></div>
             <div style="text-align: center; margin-top: 3rem;">
@@ -373,6 +373,7 @@
         const articles = {
             pelMel: {
                 "Junior Year (2025-2026)": [
+                    { title: "Boys Lacrosse", date: "Jun 2026", category: "Sports", url: null, imageUrl: "PM_Sports_BoysLacrosse_062026.jpg", isPrint: true },
                     { title: "2026 PMHS Olympics Preview", date: "Feb 2026", category: "Front Page Feature", url: null, imageUrl: "PM_FrontPage_Olympics_022026.jpg", isPrint: true },
                     { title: "Dulce Treats: A New Spot for Sweet Treat", date: "Feb 2026", category: "News", url: null, imageUrl: "PM_News_Dulce_022026.jpg", isPrint: true },
                     { title: "Point Counter Point: Is Sports Betting Good for the Game?", date: "Nov 2025", category: "Opinion", url: null, imageUrl: "PM_SportsBetOpin_112025.jpg", isPrint: true },
