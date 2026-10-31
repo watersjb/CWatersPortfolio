@@ -7,7 +7,6 @@
     <meta name="description" content="Student journalist covering local news and sports. Editor-in-Chief at The Pel Mel and Contributing Editor at the Pelham Examiner.">
     <!-- 
     UPDATED: January 20, 2026
-    - Email protection added
     - Articles organized by year
     - Full-width logos
     - Bruce Beck veteran status corrected
@@ -93,8 +92,6 @@
         .about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: clamp(2rem, 5vw, 4rem); }
         .about-text h2 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin-bottom: 1.5rem; }
         .about-text p { font-size: clamp(1rem, 2vw, 1.1rem); line-height: 1.8; color: #ccc; margin-bottom: 2rem; }
-        .contact-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background-color: transparent; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; color: #fff; text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: all 0.3s; cursor: pointer; }
-        .contact-btn:hover { background-color: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.4); }
         .experience-box { background-color: rgba(255, 255, 255, 0.02); padding: clamp(1.5rem, 3vw, 2.5rem); border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.1); }
         .experience-item { margin-bottom: 1.5rem; }
         .experience-item:last-child { margin-bottom: 0; }
@@ -102,10 +99,6 @@
         .experience-org { color: #888; font-size: 0.9rem; }
         .experience-years { color: #666; font-size: 0.85rem; font-style: italic; margin-top: 0.25rem; }
 
-        .contact-section { text-align: center; }
-        .contact-section h2 { font-size: clamp(2rem, 4vw, 2.5rem); font-weight: 800; margin-bottom: 1rem; }
-        .email-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 2rem; background-color: #ff3b3b; border: none; border-radius: 8px; color: #fff; text-decoration: none; font-size: 1rem; font-weight: 600; transition: all 0.3s; cursor: pointer; }
-        .email-btn:hover { background-color: #e63333; transform: translateY(-2px); }
 
         .back-to-top { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background-color: transparent; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; color: #ffffff; font-size: 0.9rem; font-weight: 600; transition: all 0.3s; cursor: pointer; }
         .back-to-top:hover { background-color: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.4); transform: translateY(-2px); }
@@ -152,7 +145,6 @@
             <button onclick="scrollToSection('pel-mel')" style="background: none; border: none; color: #888; padding: 1rem; text-align: left; cursor: pointer; font-size: 1.1rem; font-weight: 600; border-radius: 8px;">The Pel Mel</button>
             <button onclick="scrollToSection('examiner')" style="background: none; border: none; color: #888; padding: 1rem; text-align: left; cursor: pointer; font-size: 1.1rem; font-weight: 600; border-radius: 8px;">Pelham Examiner</button>
             <button onclick="scrollToSection('broadcasting')" style="background: none; border: none; color: #888; padding: 1rem; text-align: left; cursor: pointer; font-size: 1.1rem; font-weight: 600; border-radius: 8px;">Broadcasting</button>
-            <button onclick="scrollToSection('contact')" style="background: none; border: none; color: #888; padding: 1rem; text-align: left; cursor: pointer; font-size: 1.1rem; font-weight: 600; border-radius: 8px;">Contact</button>
         </nav>
         <div style="padding: 1.5rem; background-color: rgba(255, 255, 255, 0.05); border-radius: 12px;">
             <h3 style="font-size: 0.9rem; font-weight: 700; text-transform: uppercase; margin-bottom: 1rem; color: #888;">Quick Facts</h3>
@@ -194,7 +186,6 @@
                 <div class="about-text">
                     <h2>About Me</h2>
                     <p>Student journalist covering local news and sports through both written and broadcast media. Currently serving as Editor-in-Chief at The Pel Mel and Contributing Editor at the Pelham Examiner. Veteran participant in the Bruce Beck Broadcasting Camp, where I've honed my skills in play-by-play commentary, on-camera reporting, and sports journalism.</p>
-                    <button onclick="showContact()" class="contact-btn">📧 Get In Touch</button>
                 </div>
                 <div class="experience-box">
                     <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 2rem;">Experience Timeline</h3>
@@ -391,14 +382,6 @@
         </div>
     </section>
 
-    <section id="contact" class="contact-section" style="background-color: #0a0a0a;">
-        <div class="container" style="max-width: 600px;">
-            <h2>Let's Connect</h2>
-            <p style="font-size: 1rem; color: #888; margin-bottom: 2rem;">Interested in my journalism work? I'd love to hear from you.</p>
-            <button onclick="showContact()" class="email-btn">📧 Email Me</button>
-        </div>
-    </section>
-
     <footer><p>© 2026 Conor Waters. All rights reserved.</p></footer>
 
     <!-- Image Modal for Print Articles -->
@@ -410,12 +393,12 @@
     </div>
 
     <script>
-        function showContact() {
-            window.location.href = 'mailto:' + 'waterscon123' + '@' + 'gmail.com';
-        }
-
         const articles = {
             pelMel: {
+                "Senior Year (2026-2027)": [
+                    { title: "New Security Policies Greet Students at Front Door", date: "Oct 2026", category: "Front Page Feature", url: null, imageUrl: "PM_FrontPage_Security_102026.jpg", isPrint: true },
+                    { title: "Congress vs NCAA: Sports Showdown", date: "Oct 2026", category: "News", url: null, imageUrl: "PM_News_NCAA_102026.png", isPrint: true }
+                ],
                 "Junior Year (2025-2026)": [
                     { title: "Boys Lacrosse", date: "Jun 2026", category: "Sports", url: null, imageUrl: "PM_Sports_BoysLacrosse_062026.jpg", isPrint: true },
                     { title: "Golf", date: "Jun 2026", category: "Sports", url: null, imageUrl: "PM_Sports_BoysGolf_062026.jpg", isPrint: true },
